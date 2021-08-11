@@ -18,12 +18,15 @@ namespace DemoApp.Controllers
             }
         }
 
-        public Product Get(int id)
+        public HttpResponseMessage Get(int id)
         {
             using (ProductEntities entity = new ProductEntities())
             {
                 Product item = entity.Products.FirstOrDefault(x => x.ProductId == id);
-                return item;
+                if (item == null)
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, $"Product with id {id} does not exist!");
+                    
+                return Request.CreateResponse(HttpStatusCode.OK, item);
             }
         }
     }
