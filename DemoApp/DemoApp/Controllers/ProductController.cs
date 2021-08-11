@@ -71,7 +71,28 @@ namespace DemoApp.Controllers
             }
             catch (Exception e)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.BadGateway, e);
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, e);
+            }
+        }
+
+        public HttpResponseMessage Delete(int id)
+        {
+            try
+            {
+                using (ProductEntities entity = new ProductEntities())
+                {
+                    Product itemToBeDeleted = entity.Products.FirstOrDefault(x => x.ProductId == id);
+                    if (itemToBeDeleted == null)
+                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, $"Product with id {id} does not exist!");
+
+                    entity.Products.Remove(itemToBeDeleted);
+                    entity.SaveChanges();
+                    return Request.CreateResponse(HttpStatusCode.OK, itemToBeDeleted);
+                }
+            }
+            catch (Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, e);
             }
         }
     }
