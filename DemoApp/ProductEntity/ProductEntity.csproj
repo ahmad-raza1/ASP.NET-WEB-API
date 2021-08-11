@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BA54E876-588C-4431-88B3-7F1794045EEE}</ProjectGuid>
+    <ProjectGuid>{75DCB097-4E7D-4334-9AD0-B075BB103A87}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ProductEntity</RootNamespace>
@@ -50,16 +50,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="ProductModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProductModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ProductModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProductModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductModel.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -85,12 +79,6 @@
     <Content Include="ProductModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ProductModel.Context.cs</LastGenOutput>
-      <DependentUpon>ProductModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="ProductModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ProductModel.edmx</DependentUpon>
-      <LastGenOutput>ProductModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
