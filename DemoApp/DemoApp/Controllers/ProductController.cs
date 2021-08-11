@@ -50,5 +50,29 @@ namespace DemoApp.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, e);
             }
         }
+
+        public HttpResponseMessage Put(int id, [FromBody] Product newItem)
+        {
+            try
+            {
+                using (ProductEntities entity = new ProductEntities())
+                {
+                    Product existingItem = entity.Products.FirstOrDefault(x => x.ProductId == id);
+                    if (existingItem == null)
+                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, $"Product with id {id} does not exist!");
+
+                    existingItem.Name = newItem.Name;
+                    existingItem.Quantity = newItem.Quantity;
+                    existingItem.BoxSize = newItem.BoxSize;
+                    existingItem.Price = newItem.Price;
+                    entity.SaveChanges();
+                    return Request.CreateResponse(HttpStatusCode.OK, existingItem);
+                }
+            }
+            catch (Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadGateway, e);
+            }
+        }
     }
 }
