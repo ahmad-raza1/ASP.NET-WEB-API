@@ -29,5 +29,26 @@ namespace DemoApp.Controllers
                 return Request.CreateResponse(HttpStatusCode.OK, item);
             }
         }
+
+        public HttpResponseMessage Post([FromBody] Product item)
+        {
+            try
+            {
+                using (ProductEntities entity = new ProductEntities())
+                {
+                    entity.Products.Add(item);
+                    entity.SaveChanges();
+
+                    HttpResponseMessage message = Request.CreateResponse(HttpStatusCode.Created, item);
+                    message.Headers.Location = new Uri(Request.RequestUri + item.ProductId.ToString());
+                    
+                    return message;
+                }
+            }
+            catch (Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, e);
+            }
+        }
     }
 }
