@@ -17,5 +17,14 @@ namespace DemoApp.Controllers
                 return entity.Products.ToList();
             }
         }
+
+        public Product Get(int id)
+        {
+            using (ProductEntities entity = new ProductEntities())
+            {
+                Product item = entity.Products.FirstOrDefault(x => x.ProductId == id);
+                return item;
+            }
+        }
     }
 }
