@@ -50,10 +50,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Product.cs">
+      <DependentUpon>ProductModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ProductModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProductModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProductModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductModel.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -79,6 +87,12 @@
     <Content Include="ProductModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ProductModel.Context.cs</LastGenOutput>
+      <DependentUpon>ProductModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="ProductModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ProductModel.edmx</DependentUpon>
+      <LastGenOutput>ProductModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
